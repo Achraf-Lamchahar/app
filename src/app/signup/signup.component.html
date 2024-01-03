@@ -5,7 +5,7 @@
     (close)="onHandleError()"
   ></app-alert>
   <div class="signup-form">
-    <h1>Sign Up</h1>
+    <h1>Create account</h1>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
       <input
           type="email"
@@ -45,7 +45,7 @@
             signUpForm.get('password').touched
           "
         >
-          Password is required.
+          A strong password is required.
         </div>
         <div
           class="error-message"
@@ -55,12 +55,12 @@
             signUpForm.get('password').touched
           "
         >
-          Password must be at least 6 characters long.
+          Password must be at least 8 characters long.
         </div>
-      <button class="btn" type="submit" [disabled]="signUpForm.invalid">
-            Sign up
+      <button class="btn-info" type="submit" [disabled]="signUpForm.invalid">
+            Create
           </button>
     </form>
-    <p class="login-link">Already a member? <a routerLink="/login">Sign in now</a></p>
+    <p class="login-link">I have an account: <a routerLink="/login">Log in</a></p>
   </div>
 </div>

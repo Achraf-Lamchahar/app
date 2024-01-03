@@ -5,7 +5,7 @@
     (close)="onHandleError()"
   ></app-alert>
   <div class="login-form">
-    <h1>Sign In</h1>
+    <h1>Log in</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
       <input
         type="email"
@@ -20,7 +20,7 @@
           loginForm.get('email').touched
         "
       >
-        Email is required.
+        An email is required.
       </div>
       <div
         class="error-message"
@@ -46,13 +46,13 @@
       >
         Password is required.
       </div>
-      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+      <button type="submit" class="btn-info" [disabled]="loginForm.invalid">Log in</button>
     </form>
     <div class="alert alert-danger" *ngIf="authFailed">
       Authentication failed
     </div>
     <p class="signup-link">
-      New to Netflix? <a [routerLink]="['/signup']">Sign up now</a>
+      Don't have an account: <a [routerLink]="['/signup']"> Create an account</a>
     </p>
   </div>
 </div>

@@ -21,6 +21,11 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class UsersloginService {
+
+  getIsAuthenticated(): boolean {
+    return this.userSubject.value !== null;
+  }
+
   constructor(private http: HttpClient, private router: Router) {}
   userSubject = new BehaviorSubject<User>(null);
   private tokenExpirationTime: any;
@@ -162,6 +167,7 @@ export class UsersloginService {
     return throwError(() => errorMessage);
   }
 }
+
 
 //   // Authenticate a user based on provided email and password
 //   authenticateUser(email: string, password: string): Promise<boolean> {

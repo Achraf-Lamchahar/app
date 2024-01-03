@@ -53,13 +53,13 @@ input[type="password"] {
 }
 
 button {
-  background-color: #e50914;
+  background-color: #005cbf;
   color: #fff;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #ff3d3d;
+  background-color: #0056b3;
 }
 
 .signup-link {
@@ -68,6 +68,6 @@ button:hover {
 }
 
 .signup-link a {
-  color: #e50914;
+  color: #005cbf;
   text-decoration: none;
 }

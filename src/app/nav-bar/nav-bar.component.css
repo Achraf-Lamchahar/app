@@ -6,3 +6,8 @@
 .navbar-form {
   margin-right: 15px; /* Adjust the value to your preference */
 }
+
+a:hover {
+  cursor: pointer;
+}
+

@@ -3,6 +3,7 @@
   <img src="https://image.tmdb.org/t/p/w1280/{{ filmDetails.poster_path }}" width="300" height="400" alt="{{ filmDetails.title }}">
   <p>{{ filmDetails.overview }}</p>
   <p>Release Date: {{ filmDetails.release_date }}</p>
+
   <form #commentForm="ngForm" (ngSubmit)="addComment()">
     <angular-editor [placeholder]="'Enter your comment here...'" [config]="config" [name]="'commentEditor'" [(ngModel)]="newComment"></angular-editor>
     <!-- Display an error message if the comment is empty -->

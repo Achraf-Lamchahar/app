@@ -2,8 +2,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {FilmService} from "../film-service/film.service";
 import {UsersloginService} from "../users.login.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { CommonModule } from '@angular/common';
+import {AuthResponseData} from "../users.login.service";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -11,13 +13,26 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './nav-bar.component.html',
   imports: [
-    FormsModule, CommonModule
+    FormsModule, CommonModule, RouterLink
   ],
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+    private userSub: Subscription;
 
-  constructor(private filmService: FilmService, private userLoginService: UsersloginService, private router: Router) { }
+    ngOnInit() {
+        this.userLoginService.autoLogin();
+        this.userSub = this.userLoginService.userSubject.subscribe((user) => {
+            console.log('user', user);
+            this.isAuthenticated = !!user;
+        });
+    }
+
+
+  constructor(private filmService: FilmService, private userLoginService: UsersloginService, private router: Router) {
+
+
+  }
   searchTerm: string = '';
   isAuthenticated: boolean = false;
 
@@ -29,8 +44,10 @@ export class NavBarComponent {
 
   onLogout() {
     this.userLoginService.logout();
+    this.isAuthenticated = false;
   }
   onLogin() {
     this.router.navigate(['/login']);
+    this.isAuthenticated = true;
   }
 }
