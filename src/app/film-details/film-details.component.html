@@ -1,0 +1,45 @@
+<div>
+  <h2>{{ filmDetails.title }}</h2>
+  <img src="https://image.tmdb.org/t/p/w1280/{{ filmDetails.poster_path }}" width="300" height="400" alt="{{ filmDetails.title }}">
+  <p>{{ filmDetails.overview }}</p>
+  <p>Release Date: {{ filmDetails.release_date }}</p>
+  <form #commentForm="ngForm" (ngSubmit)="addComment()">
+    <angular-editor [placeholder]="'Enter your comment here...'" [config]="config" [name]="'commentEditor'" [(ngModel)]="newComment"></angular-editor>
+    <!-- Display an error message if the comment is empty -->
+    <div *ngIf="isCommentEmpty" class="text-danger">Please enter a non-empty comment.</div>
+    <button class="btn btn-primary mt-2">Add Comment</button>
+  </form>
+</div>
+
+<h2>Previous comments</h2><br>
+<div *ngFor="let comment of paginatedComments">
+  <div>
+    <p><strong>{{ comment.username }}</strong> - {{ comment.timestamp }}</p>
+    <!-- Use [innerHTML] to render the HTML content -->
+    <div [innerHTML]="comment.text"></div>
+  </div>
+  <hr>
+</div>
+
+<!-- Bootstrap Pagination -->
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(-1)">Previous</button>
+    </li>
+
+    <li class="page-item" *ngFor="let page of getPages()" [class.active]="currentPage === page">
+      <button class="page-link" (click)="changePage(page)">{{ page }}</button>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(1)">Next</button>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+

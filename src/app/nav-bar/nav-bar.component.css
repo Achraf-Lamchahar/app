@@ -1,0 +1,8 @@
+.navbar-nav > li {
+  margin-right: 15px; /* Adjust the value to your preference */
+}
+
+/* Add spacing between search input and button */
+.navbar-form {
+  margin-right: 15px; /* Adjust the value to your preference */
+}
